@@ -37,7 +37,7 @@ export default function Cliente() {
 
   // Filtrar clientes solo por el nombre
   const filteredClientes = clientes.filter((cliente) =>
-    cliente.nombre && cliente.nombre.toLowerCase().includes(search.toLowerCase())
+    cliente?.nombre && cliente.nombre.toLowerCase().includes(search.toLowerCase())
   );
 
   return (

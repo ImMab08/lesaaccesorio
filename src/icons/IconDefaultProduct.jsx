@@ -1,9 +1,9 @@
-export function IconDefaultProduct(props) {
+export function IconDefaultProduct({ width = 24, height = 24, ...props }) {
   return (
     <svg
       fill="#00000"
-      width="24px"
-      height="24px"
+      width={width}
+      height={height}
       viewBox="0 -960 960 960"
       xmlns="http://www.w3.org/2000/svg"
     >

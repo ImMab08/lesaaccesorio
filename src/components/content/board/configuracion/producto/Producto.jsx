@@ -36,9 +36,9 @@ export default function Producto() {
   };
 
 
-  // const filteredProductos = productos.filter((producto) =>
-  //   producto.nombre.toLowerCase().includes(search.toLowerCase())
-  // );
+  const filteredProductos = productos.filter((producto) =>
+    producto?.nombre.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <section className="w-full h-full flex flex-col text-secondary overflow-auto">
@@ -103,8 +103,8 @@ export default function Producto() {
                       </tr>
                     </thead>
                     <tbody className="">
-                      {productos.length > 0 ? (
-                        productos.map((producto) => (
+                      {filteredProductos.length > 0 ? (
+                        filteredProductos.map((producto) => (
                           <tr
                             key={producto.nombre}
                             className="border-b border-border"
