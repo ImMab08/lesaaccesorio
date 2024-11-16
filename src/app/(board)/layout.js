@@ -7,7 +7,7 @@ export default function Layout({ children }) {
       <section className='flex w-auto h-full shadow-2xl'>
         <Dashboard />
       </section>
-      <section className='flex flex-col w-full h-screen overflow-hidden p-5 bg-gray-200'>
+      <section className='flex flex-col w-full h-screen overflow-hidden bg-gray-200'>
         {children}
       </section>
     </main>

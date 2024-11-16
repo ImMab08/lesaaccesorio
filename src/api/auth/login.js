@@ -5,7 +5,9 @@ export const login = async (email, password) => {
 
     const response = await axios.post('http://localhost:8081/v01/auth/login', {email, password});
     const { token } = response.data;
+    console.log("Token extraido", token);
     document.cookie = `token=${token}; path=/; SameSite=Lax`;
+
     return true;  
 
   } catch {

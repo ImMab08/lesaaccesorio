@@ -29,7 +29,7 @@ export default function Login() {
   }
 
   return (
-    <div className="w-full h-full flex items-center justify-center bg-gray-100">
+    <div className="w-full h-full flex items-center justify-center bg-hero bg-no-repeat bg-cover bg-center bg-opacity-20">
       <div className="bg-white rounded-md space-y-16 py-10 px-20 shadow-xl">
         <div className="flex flex-col items-center">
           <p className="text-2xl font-bold">Lesa Accesorios</p>

@@ -13,13 +13,13 @@ api.interceptors.request.use((config) => {
     // verificar si el token existe
     if (tokenCookie) {
         const token = tokenCookie.split('=')[1]; // Obtener el token
+        console.log('Token encontrado:', token);
         config.headers.Authorization = `Bearer ${token}`;
     } else {
         console.log('Token no encontrado');
     }
 
-    config.withCredentials = true;
-
+    // config.withCredentials = true;
     return config;
 }, (error) => {
     return Promise.reject(error);

@@ -1,6 +1,6 @@
 import React from "react";
-import Register from "@/components/authentication/register/Register";
+import FormRegister from "@/components/authentication/register/FormRegister";
 
 export default function Home() {
-  return <Register />;
+  return <FormRegister />;
 }

@@ -8,9 +8,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        primary: "#FFFFFF",
+        secondary: "#F2F2F2",
+        tertiary: "#E0E0E0",
+        title: "#2D2D2D",
+        subtitle: "#5A5A5A",
+        border: "#D9D9D9",        
         background: "#434343",
-        foreground: "var(--foreground)",
       },
+      backgroundImage: {
+        'hero': "url('/img/fondo.jpg')",
+      }
     },
   },
   plugins: [],
