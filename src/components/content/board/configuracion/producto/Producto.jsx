@@ -1,27 +1,33 @@
-'use client'
-import React, { useState } from 'react'
+"use client";
+import React, { useState } from "react";
 
-import { useFetch } from '@/hook/useFetch';
-import useModalStore from '@/hook/storeOpenModals';
+import { useFetch } from "@/hook/useFetch";
+import useModalStore from "@/hook/storeOpenModals";
 
-import CreateProducto from '@/components/content/modals/producto/CreateProducto';
-import UpdateProducto from '@/components/content/modals/producto/UpdateProducto';
-import DeleteProducto from '@/components/content/modals/producto/DeleteProducto';
+import CreateProducto from "@/components/content/modals/producto/CreateProducto";
+import UpdateProducto from "@/components/content/modals/producto/UpdateProducto";
+import DeleteProducto from "@/components/content/modals/producto/DeleteProducto";
 
-import { IconArrowDown, IconPapelera, IconPencil, IconDefaultProduct, IconSearch } from '@/icons'
+import {
+  IconArrowDown,
+  IconPapelera,
+  IconPencil,
+  IconDefaultProduct,
+  IconSearch,
+} from "@/icons";
 
 export default function Producto() {
   const [open, setOpen] = useState(false);
-  const [ search, setSearch ] = useState("");
-  const [ selectProducto, setSelectProducto ] = useState(null);
+  const [search, setSearch] = useState("");
+  const [selectProducto, setSelectProducto] = useState(null);
 
   const { modals, openModal } = useModalStore();
   const { data: productos, setData } = useFetch("/v01/producto/usuario");
   console.log("datos", productos);
 
   const handleOpenModal = () => {
-    setOpen(!open)
-  }
+    setOpen(!open);
+  };
 
   // Función para editar un producto
   const handleOpenModalEdit = (producto) => {
@@ -35,9 +41,10 @@ export default function Producto() {
     openModal("EliminarProducto");
   };
 
-
-  const filteredProductos = productos.filter((producto) =>
-    producto?.nombre.toLowerCase().includes(search.toLowerCase())
+  const filteredProductos = productos.filter(
+    (producto) =>
+      producto.nombre &&
+      producto.nombre.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -61,8 +68,12 @@ export default function Producto() {
             <div className="rounded-lg border-border border">
               <div className="flex items-center p-6 ">
                 <div className="flex flex-col space-y-1.5">
-                  <h3 className="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight text-title">Productos</h3>
-                  <p className="text-sm text-muted-foreground text-title">Administra tus productos.</p>
+                  <h3 className="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight text-title">
+                    Productos
+                  </h3>
+                  <p className="text-sm text-muted-foreground text-title">
+                    Administra tus productos.
+                  </p>
                 </div>
 
                 <div className="relative ml-auto flex-1 md:grow-0 bg-secondary rounded-lg">
@@ -93,13 +104,27 @@ export default function Producto() {
                   <table className="w-full caption-bottom text-sm">
                     <thead className="">
                       <tr className="border-b border-border transition-colors hover:bg-muted/50">
-                        <th className="h-12 px-4 text-left align-middle font-bold text-title">Imagen</th>
-                        <th className="h-12 px-4 text-left align-middle font-bold text-title">Nombre</th>
-                        <th className="h-12 px-4 text-left align-middle font-bold text-title">Descripción</th>
-                        <th className="h-12 px-4 text-left align-middle font-bold text-title">Precio</th>
-                        <th className="h-12 px-4 text-left align-middle font-bold text-title">Cantidad</th>
-                        <th className="h-12 px-4 text-left align-middle font-bold text-title">Artículo</th>
-                        <th className="h-12 px-4 text-left align-middle font-bold text-title">Opciones</th>
+                        <th className="h-12 px-4 text-left align-middle font-bold text-title">
+                          Imagen
+                        </th>
+                        <th className="h-12 px-4 text-left align-middle font-bold text-title">
+                          Nombre
+                        </th>
+                        <th className="h-12 px-4 text-left align-middle font-bold text-title">
+                          Descripción
+                        </th>
+                        <th className="h-12 px-4 text-left align-middle font-bold text-title">
+                          Precio
+                        </th>
+                        <th className="h-12 px-4 text-left align-middle font-bold text-title">
+                          Cantidad
+                        </th>
+                        <th className="h-12 px-4 text-left align-middle font-bold text-title">
+                          Artículo
+                        </th>
+                        <th className="h-12 px-4 text-left align-middle font-bold text-title">
+                          Opciones
+                        </th>
                       </tr>
                     </thead>
                     <tbody className="">
@@ -151,15 +176,32 @@ export default function Producto() {
                         ))
                       ) : (
                         <tr className="h-[200px]">
-                          <td colSpan="8" className="text-center text-title font-semibold p-4">No hay productos agregados</td>
+                          <td
+                            colSpan="8"
+                            className="text-center text-title font-semibold p-4"
+                          >
+                            No hay productos agregados
+                          </td>
                         </tr>
                       )}
                     </tbody>
                   </table>
 
-                  {modals.CreateProducto && <CreateProducto productos={productos} setData={setData} />}
-                  {modals.EditarProducto && <UpdateProducto producto={selectProducto} setData={setData} />}
-                  {modals.EliminarProducto && <DeleteProducto producto={selectProducto} setData={setData} />}
+                  {modals.CreateProducto && (
+                    <CreateProducto productos={productos} setData={setData} />
+                  )}
+                  {modals.EditarProducto && (
+                    <UpdateProducto
+                      producto={selectProducto}
+                      setData={setData}
+                    />
+                  )}
+                  {modals.EliminarProducto && (
+                    <DeleteProducto
+                      producto={selectProducto}
+                      setData={setData}
+                    />
+                  )}
                 </div>
               </div>
             </div>
@@ -167,5 +209,5 @@ export default function Producto() {
         )}
       </div>
     </section>
-  )
+  );
 }

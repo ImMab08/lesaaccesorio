@@ -18,22 +18,23 @@ export default function CreateProducto({ productos, setData }) {
   const [stock, setStock] = useState("");
   const [imagen, setImagen] = useState("");
 
-  const [idArticulo, setIdArticulo] = useState();
+  const [id_articulo, setId_articulo] = useState();
 
   const [error, setError] = useState("");
 
   // Función para el envío del formulario.
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await crear("/v01/producto/create", { nombre, descripcion, precio, stock, imagen, idArticulo });
+    const response = await crear("/v01/producto/create", { nombre, descripcion, precio, stock, imagen, id_articulo });
+    console.log("response producto", response)
 
     setData([
       ...productos,
       {
         ...response,
-        idArticulo,
+        id_articulo,
         nombreArticulo: articulos.find(
-          (articulo) => articulo.id === Number(idArticulo)
+          (articulo) => articulo.id === Number(id_articulo)
         )?.nombre,
       }
     ]);
@@ -55,8 +56,8 @@ export default function CreateProducto({ productos, setData }) {
                 <label className="font-semibold" htmlFor="Articulo">Articulo</label>
                 <select
                   className="py-2 px-3 bg-primary rounded-lg cursor-pointer focus:outline-none"
-                  onChange={(e) => setIdArticulo(e.target.value)}
-                  value={idArticulo}
+                  onChange={(e) => setId_articulo(e.target.value)}
+                  value={id_articulo}
                   id="articulo"
                   name="articulo"
                 >

@@ -3,15 +3,17 @@ import React, { useState } from "react";
 import { editar } from "@/utils/editar";
 import useModalStore from "@/hook/storeOpenModals";
 
-export default function UpdateArticulo({ categoria, setData }) {
+export default function UpdateArticulo({ articulo, setData }) {
   const { closeModal } = useModalStore();
 
-  // Estados locales para actualizar los datos de la categoria seleccionada.
-  const [ nombre, setNombre ] = useState(categoria?.nombre);
-  const [ descripcion, setDescripcion ] = useState(categoria?.descripcion);
+  console.log("articulo update", articulo)
+
+  // Estados locales para actualizar los datos de la articulo seleccionada.
+  const [ nombre, setNombre ] = useState(articulo?.nombre);
+  const [ descripcion, setDescripcion ] = useState(articulo?.descripcion);
   const [ error, setError ] = useState("");
 
-  // Función para manejar la edición de la categoria.
+  // Función para manejar la edición de la articulo.
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -21,9 +23,9 @@ export default function UpdateArticulo({ categoria, setData }) {
       return;
     }
 
-    await editar(`/v01/categoria/update/${categoria.id}`, { nombre, descripcion });
+    await editar(`/v01/articulo/update/${articulo.id}`, { nombre, descripcion });
     setData((prev) => 
-      prev.map((item) => item.id === categoria.id ? { nombre, descripcion } : item)
+      prev.map((item) => item.id === articulo.id ? { nombre, descripcion } : item)
     );
 
     closeModal();
@@ -33,7 +35,7 @@ export default function UpdateArticulo({ categoria, setData }) {
     <div className="w-full h-full top-0 left-0 bg-black/70 bg-opacity-60 fixed z-50 flex items-center justify-center">
       <div className="rounded-lg bg-secondary">
         <div className="flex flex-col space-y-1.5 p-5">
-          <h3 className="text-xl font-semibold text-center">Actualizar Categoria</h3>
+          <h3 className="text-xl font-semibold text-center">Actualizar Artículo</h3>
         </div>
 
         <div className="px-6">
@@ -45,7 +47,7 @@ export default function UpdateArticulo({ categoria, setData }) {
                   required
                   type="text"
                   value={nombre}
-                  placeholder="Añade un nombre a la categoría"
+                  placeholder="Añade un nombre al artículo"
                   onChange={(e) => setNombre(e.target.value)}
                   className="flex px-3 py-2 text-sm text-title bg-primary min-w-72 rounded-lg focus:outline-none"
                 />
@@ -68,7 +70,7 @@ export default function UpdateArticulo({ categoria, setData }) {
           </div>
         </div>
         <div className="flex items-center justify-center p-4 relative space-x-10">
-          <button onClick={() => closeModal("EditarCategoria")} className="flex items-center justify-center text-sm font-medium text-white h-9 bg-red-500 hover:bg-red-500/80 rounded-md px-3">Cancelar</button>
+          <button onClick={() => closeModal("Editararticulo")} className="flex items-center justify-center text-sm font-medium text-white h-9 bg-red-500 hover:bg-red-500/80 rounded-md px-3">Cancelar</button>
           <button onClick={handleSubmit} className="flex items-center justify-center text-sm font-medium text-white h-9 bg-green-500 hover:bg-green-500/80 rounded-md px-4">Actualizar</button>
         </div>
       </div>

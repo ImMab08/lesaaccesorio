@@ -20,13 +20,13 @@ export default function Articulo() {
   // función para editar una categoria;
   const handleOpenModalEdit = (categoria) => {
     setSelectCategoria(categoria);
-    openModal("EditarCategoria");
+    openModal("EditarArticulo");
   };
 
   // función para eliminar una subcategoria;
   const handleOpenModalDelete = (categoria) => {
     setSelectCategoria(categoria);
-    openModal("EliminarCategoria");
+    openModal("EliminarArticulo");
   };
 
   return (
@@ -54,7 +54,7 @@ export default function Articulo() {
                     <td className="p-4 text-xs md:text-sm align-middle text-subtitle">{articulo.descripcion}</td>
 
                     <td className="p-4 align-middle space-x-2">
-                      <button className="inline-flex items-center justify-center rounded-md bg-bg hover:bg-bg/80 w-6 h-6 md:w-7 md:h-7" onClick={() => handleOpenModalEdit(articulo)}>
+                      <button className="inline-flex items-center justify-center rounded-md bg-blue-500 hover:bg-blue-500/80 w-6 h-6 md:w-7 md:h-7" onClick={() => handleOpenModalEdit(articulo)}>
                         <IconPencil className="hidden md:block" width="18px" height="18px" />
                         <IconPencil className="block md:hidden" width="14px" height="14px" />
                       </button>
@@ -76,11 +76,11 @@ export default function Articulo() {
       </div>
 
       <div className="flex items-center justify-center p-4 relative">
-        <button className="flex items-center justify-center text-sm font-medium text-white h-9 bg-green-500 hover:bg-green-500/80 rounded-md px-4" onClick={() => openModal("CreateCategoria")}>Añadir Categoría</button>
+        <button className="flex items-center justify-center text-sm font-medium text-white h-9 bg-green-500 hover:bg-green-500/80 rounded-md px-4" onClick={() => openModal("CreateArticulo")}>Añadir Articulo</button>
 
-        {modals.CreateCategoria && (<CreateArticulo articulos={articulos} setData={setData} />)}
-        {modals.EditarCategoria && (<UpdateArticulo categoria={selectCategoria} setData={setData}/>)}
-        {modals.EliminarCategoria && (<DeleteArticulo categoria={selectCategoria} setData={setData}/>)}
+        {modals.CreateArticulo && (<CreateArticulo articulos={articulos} setData={setData} />)}
+        {modals.EditarArticulo && (<UpdateArticulo articulo={selectCategoria} setData={setData}/>)}
+        {modals.EliminarArticulo && (<DeleteArticulo articulo={selectCategoria} setData={setData}/>)}
       </div>
     </div>
   );

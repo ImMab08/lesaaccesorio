@@ -98,7 +98,7 @@ export default function Inicio() {
 
         // Si ya existe el producto, incrementar la cantidad
         if (newCart[idProducto]) {
-          newCart[idProducto].cantidad += 1;
+          newCart[idProducto].cantidad ++;
         } else {
           // Si no existe, agregarlo al carrito con cantidad 1
           newCart[idProducto] = { ...producto, cantidad: 1 };
